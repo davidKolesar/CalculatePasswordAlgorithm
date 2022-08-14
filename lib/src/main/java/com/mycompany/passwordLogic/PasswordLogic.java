@@ -7,7 +7,15 @@ import java.util.stream.Stream;
 
 public class PasswordLogic {
 
-	public int passwordCalculator(String potentialPasswords) {		
+	/**
+	 * Takes in String of potential passwords and enforces the following rules:
+	 * it has to contain only alphanumerical characters (a−z, A−Z, 0−9); 
+	 * there should be an even number of letters; 
+	 * there should be an odd number of digits.
+	 * 
+	 * @param potentialPasswords
+	 */
+	public void passwordCalculator(String potentialPasswords) {
 		String[] splitPasswords = potentialPasswords.split("\\s+");
 		Stream<String> evaluatePotentialPasswords = Arrays.stream(splitPasswords);
 		List<String> validPasswords = evaluatePotentialPasswords
@@ -21,14 +29,8 @@ public class PasswordLogic {
 				.collect(Collectors.toList());
 
 		System.out.println(("Valid passwords:"));
-		for(int i=0; i < validPasswords.size(); i++) {
+		for (int i = 0; i < validPasswords.size(); i++) {
 			System.out.println(validPasswords.get(i));
 		}
-		
-		if (validPasswords.size() == 0) {
-			return -1;
-		}
-
-		return validPasswords.size();
 	}
 }
