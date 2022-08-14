@@ -17,13 +17,13 @@ public class PasswordLogic {
 		String[] splitPasswords = potentialPasswords.split("\\s+");
 		Stream<String> evaluatePotentialPasswords = Arrays.stream(splitPasswords);
 		String longestValidPassword = evaluatePotentialPasswords
-				// filter out passwords that are not alphanumeric
+				// Filter out passwords that are not alphanumeric
 				.filter(x -> x.matches("^[a-zA-Z0-9]*$"))
-				// filter out passwords with even number of digits
+				// Filter out passwords with even number of digits
 				.filter(x -> x.chars().filter(Character::isDigit).count() % 2 != 0)
 				// Filter out password with odd string lengths
 				.filter(x -> x.chars().filter(Character::isLetter).count() % 2 == 0)
-				// Collect the remaining results
+				// Identify longest password
 				.max(Comparator.comparingInt(String::length)).get();
 
 		if (longestValidPassword == null || longestValidPassword.trim().isEmpty()) {
